@@ -35,10 +35,11 @@ def close(x):
 def far(x):
     return abs(x - correct_number) <= 25
 
+# Main game loop 
 game_over = False
-while not game_over and level <= 5:
-    user_guess_str = input("Guess a number ")
-    if not user_guess_str.isdigit():
+while not game_over and level <= 5:                 # =========== Leveling system =============
+    user_guess_str = input("Guess a number ")       # Ps: This is an input checker
+    if not user_guess_str.lstrip('-').isdigit():
         print("Please enter a valid number.")
         continue
     user_guess = int(user_guess_str)
@@ -57,7 +58,7 @@ while not game_over and level <= 5:
 
 if level > 5 and lives <= 4:
     print("Congratulations! You have guessed all numbers correctly")
-elif level > 5 and lives == 5:
+elif level > 5 and lives == 5:                          # Easter egg :>
     print("Yo bro stop hacking")
 
     
