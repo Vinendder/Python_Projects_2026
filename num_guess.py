@@ -1,7 +1,12 @@
+
+# Terminal start screen
 print('''
 ========================== Welcome to the Number Guessing Game! ==========================''')
+
+# The correct number
 correct_number = 73
 
+# All functions below are used to check the user's guess and provide feedback
 def check_guess(x):
     if too_high(x):
         print("Your guess is too high!")
@@ -30,8 +35,12 @@ def near_low(x):
 
 def correct(x):
     return x == 73
+
+# Life system for the game, wrong guess is punshied. Game ends when lives reach 0 or the user guesses the correct number
 lives = 5
 game_over = False
+
+# While loop to keep the game running until the user guesses the correct number or runs out of lives
 while game_over is False:
     user_guess_str = input("Guess a number! ")
     if user_guess_str.lstrip('-').isdigit():
