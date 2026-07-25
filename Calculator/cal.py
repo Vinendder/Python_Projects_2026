@@ -1,80 +1,84 @@
-def add_numbers(operation):
-    return first_number + second_number
+print("""
+==================== Welcome To Calculator ====================""")
 
 
-def subtract_numbers(operation):
-    return first_number - second_number
+def add_numbers(a, b):
+    return a + b
 
 
-def multiply_numbers(operation):
-    return first_number * second_number
+def subtract_numbers(a, b):
+    return a - b
 
 
-def divide_numbers(operation):
-    return first_number / second_number
+def multiply_numbers(a, b):
+    return a * b
 
 
-def power_numbers(operation):
-    return first_number**second_number
+def divide_numbers(a, b):
+    return a / b
 
 
-def modulus_numbers(operation):
-    return first_number % second_number
+def power_numbers(a, b):
+    return a**b
 
 
-def square_root(operation):
-    return first_number**0.5
+def modulus_numbers(a, b):
+    return a % b
 
 
-def square(operation):
-    return first_number**2
+def square_root(a):
+    return a**0.5
 
 
-Calculator_off = False
+def square(a):
+    return a**2
 
-while not Calculator_off:
-    first_number = float(input("Enter first number "))
-    if not first_number.is_integer():
-        print("Please enter a valid number.")
-        continue
+while True:
+    while True:
+        try:
+            first_number = float(input("Enter first number: "))
+            break
+        except ValueError:
+            print("Please enter a valid number.")
 
     valid_operations = ["+", "-", "*", "/", "^", "modulo", "root", "^2", "exit"]
-    operation = input("""Enter operation (+, -, *, /, ^, modulo, root, ^2, exit):
-        """).lower()
+    operation = input(""" Enter operation: +, -, *, /, ^, modulo, root, ^2, exit
+            >  """).lower()
     if operation not in valid_operations:
-        print("Please enter a valid operation.")
+        print("Please enter valid operation.")
         continue
-    elif "root" in operation:
-        result = square_root(operation)
-        print(f"The result is: {result}")
-        continue
-    elif "^2" in operation:
-        result = square(operation)
-        print(f"The result is {result}")
-        continue
-    elif "exit" in operation:
+    elif operation == "exit":
         break
-
-    second_number = float(input("Enter second number "))
-    if not second_number.is_integer():
-        print("Please enter a valid number.")
+    elif operation == "root":
+        print(f"The Result is {square_root(first_number)}")
+        continue
+    elif operation == "^2":
+        print(f"The Result is {square(first_number)}")
         continue
 
-    if "+" in operation:
-        result = add_numbers(operation)
-        print(f"The result is {result}")
-    elif "-" in operation:
-        result = subtract_numbers(operation)
-        print(f"The result is {result}")
-    elif "*" in operation:
-        result = multiply_numbers(operation)
-        print(f"The result is {result}")
-    elif "/" in operation:
-        result = divide_numbers(operation)
-        print(f"The result is {result}")
-    elif "^" in operation:
-        result = power_numbers(operation)
-        print(f"The result is {result}")
-    elif "modulo" in operation:
-        result = modulus_numbers(operation)
-        print(f"The result is {result}")
+    while True:
+        try:
+            second_number = float(input("Enter second number: "))
+            if operation == "/" and second_number == 0:
+                print("Cannot divide by 0")
+                continue
+            break
+        except ValueError:
+            print("Please enter a valid number")
+
+    if operation == "+":
+        result = add_numbers(first_number, second_number)
+    elif operation == "-":
+        result = subtract_numbers(first_number, second_number)
+    elif operation == "*":
+        result = multiply_numbers(first_number, second_number)
+    elif operation == "/":
+        result = divide_numbers(first_number, second_number)
+    elif operation == "^":
+        result = power_numbers(first_number, second_number)
+    elif operation == "modulo":
+        result = modulus_numbers(first_number, second_number)
+
+    print(f"The Result is {result}")
+    
+    
