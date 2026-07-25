@@ -43,23 +43,26 @@ while True:
 
     valid_operations = ["+", "-", "*", "/", "^", "modulo", "root", "^2", "exit"]
     operation = input(""" Enter operation: +, -, *, /, ^, modulo, root, ^2, exit
-            >  """).lower()
+            >  """).strip().lower()
     if operation not in valid_operations:
         print("Please enter valid operation.")
         continue
     elif operation == "exit":
         break
     elif operation == "root":
-        print(f"The Result is {square_root(first_number)}")
+        if first_number < 0:
+            print("Cannot find the square root of negative numbers")
+        else:
+            print(f"The Result is {round(square_root(first_number))}")
         continue
     elif operation == "^2":
-        print(f"The Result is {square(first_number)}")
+        print(f"The Result is {round(square(first_number))}")
         continue
 
     while True:
         try:
             second_number = float(input("Enter second number: "))
-            if operation == "/" and second_number == 0:
+            if operation == "/" or operation == "modulo" and second_number == 0:
                 print("Cannot divide by 0")
                 continue
             break
@@ -79,6 +82,6 @@ while True:
     elif operation == "modulo":
         result = modulus_numbers(first_number, second_number)
 
-    print(f"The Result is {result}")
+    print(f"The Result is {round(result, 10)}")
     
     
