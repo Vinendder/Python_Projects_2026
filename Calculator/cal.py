@@ -1,8 +1,7 @@
 print("""
 ==================== Welcome To Calculator ====================""")
 
-# Variables to compare and store
-valid_operations = ["+", "-", "*", "/", "^", "modulo", "root", "^2", "exit", "history", "clear"]
+# Stores history
 history = []
 
 # Main functions defined
@@ -27,15 +26,35 @@ def power_numbers(a, b):
 
 
 def modulus_numbers(a, b):
+    if b == 0:
+        return "Cannot modulo by 0"
     return a % b
 
-
 def square_root(a):
-    return round(a ** 0.5, 10)     
+    if a < 0:
+        return "Root cannot be negative"
+    return round(a ** 0.5, 5)
 
 
 def square(a):
-    return a**2
+    return round(a**2, 5)
+
+# List and dictionaries for operations 
+basic_features = ["history", "clear", "exit"]
+
+single_num_operations = {
+    "root": square_root,
+    "^2": square,
+}
+
+double_num_operations = {
+    "+": add_numbers,
+    "-": subtract_numbers,
+    "*": multiply_numbers,
+    "/": divide_numbers,
+    "^": power_numbers,
+    "modulo": modulus_numbers,
+}
 
 # Main loop for function
 while True:
@@ -48,10 +67,12 @@ while True:
 
     operation = input(""" Enter operation: +, -, *, /, ^, modulo, root, ^2, exit, history, clear
             >  """).strip().lower()
-    if operation not in valid_operations: # Operation check
+    if (operation not in basic_features
+         and operation not in double_num_operations
+         and operation not in single_num_operations): # Operation check
         print("Please enter valid operation.")
         continue
-    elif operation == "exit":  # Single/No number operations
+    elif operation == "exit":  # Basic features 
         break
     elif operation == "history":
         if not history:
@@ -67,16 +88,10 @@ while True:
             history.clear()
             print("History cleared.")
         continue
-    elif operation == "root":
-        if first_number < 0:
-            print("Cannot find the square root of negative numbers")
-        else:
-            print(f"The Result is {square_root(first_number)}")
-            history.append(f"{first_number} {operation} = {square_root(first_number)} ")
-        continue
-    elif operation == "^2":
-        print(f"The Result is {round(square(first_number))}")
-        history.append(f"{first_number} {operation} ={round(square(first_number))} ")
+    elif operation in single_num_operations: # Single number operations
+        result = single_num_operations[operation](first_number)
+        print(f"The Result is {result}")
+        history.append(f"{first_number} {operation} = {result}") 
         continue
 
     while True: # Loop for second value to avoid going all the way back for false input
@@ -89,19 +104,8 @@ while True:
         except ValueError:
             print("Please enter a valid number")
 
-    if operation == "+":
-        result = add_numbers(first_number, second_number)
-    elif operation == "-":
-        result = subtract_numbers(first_number, second_number)
-    elif operation == "*":
-        result = multiply_numbers(first_number, second_number)
-    elif operation == "/":
-        result = divide_numbers(first_number, second_number)
-    elif operation == "^":
-        result = power_numbers(first_number, second_number)
-    elif operation == "modulo":
-        result = modulus_numbers(first_number, second_number)
-
-    print(f"The Result is {round(result, 10)}") # End result for operation of 2 numbers
-    history.append(f"{first_number} {operation} {second_number} = {round(result, 10)}") # History for operation of 2 numbers 
+    if operation in double_num_operations:
+        result = double_num_operations[operation](first_number, second_number)
+        print(f"The Result is {round(result, 10)}") # End result for operation of 2 numbers
+        history.append(f"{first_number} {operation} {second_number} = {round(result, 10)}") # History for operation of 2 numbers 
     
