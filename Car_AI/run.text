@@ -1,0 +1,22 @@
+-----MS = 9, Batch= 128, Lr = 0.005, LookAhead = 35, Accel = 0.15, -------
+track score: 946 | steps: 303 | finished: True
+track2 score: 819 | steps: 699 | finished: True
+
+-----MS = 9, Batch= 64, Lr = 0.005, LookAhead = 35, Accel = 0.15, -------
+track score: 938 | steps: 318 | finished: True
+track2 score: 772 | steps: 771 | finished: True
+
+-----MS = 10, Batch= 128, Lr = 0.0025, LookAhead = 35, Accel = 0.25, -------
+track score: 955 | steps: 268 | finished: True
+track2 score: 871 | steps: 584 | finished: True [episodes 1000]
+
+-----MS = 18, Batch= 128, Lr = 0.0025, LookAhead = 45, Accel = 0.35, -------
+track score: 936 | steps: 229 | finished: True
+track2 score: 828 | steps: 527 | finished: True [2000 epsidoes]
+
+-----MS = 20, Batch= 128, Lr = 0.0025, LookAhead = 50, Accel = 0.5, -------
+track2 score: 836 | steps: 495 | finished: True
+track score: 939 | steps: 215 | finished: True
+
+track2 score: 840 | steps: 440 | finished: True
+track score: 931 | steps: 202 | finished: True [3k episodes]
